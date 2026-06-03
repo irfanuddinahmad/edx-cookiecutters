@@ -39,7 +39,7 @@ THIRD_PARTY_APPS = (
     'corsheaders',
     'csrf.apps.CsrfAppConfig',  # Enables frontend apps to retrieve CSRF tokens
     'rest_framework',
-    'rest_framework_swagger',
+    'drf_spectacular',
     'social_django',
     'waffle',
 )

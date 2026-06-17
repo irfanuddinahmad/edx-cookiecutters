@@ -25,7 +25,7 @@ from auth_backends.urls import oauth2_urlpatterns
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, re_path
-from rest_framework_swagger.views import get_swagger_view
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 from {{cookiecutter.project_name}}.apps.api import urls as api_urls
 from {{cookiecutter.project_name}}.apps.core import views as core_views
@@ -35,7 +35,8 @@ admin.autodiscover()
 urlpatterns = oauth2_urlpatterns + [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^api/', include(api_urls)),
-    re_path(r'^api-docs/', get_swagger_view(title='{{cookiecutter.repo_name}} API')),
+    re_path(r'^api-schema/', SpectacularAPIView.as_view(), name='schema'),
+    re_path(r'^api-docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     re_path(r'^auto_auth/$', core_views.AutoAuth.as_view(), name='auto_auth'),
     re_path(r'', include('csrf.urls')),  # Include csrf urls from edx-drf-extensions
     re_path(r'^health/$', core_views.health, name='health'),

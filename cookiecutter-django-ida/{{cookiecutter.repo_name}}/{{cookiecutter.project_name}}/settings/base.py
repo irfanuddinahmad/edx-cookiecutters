@@ -39,7 +39,7 @@ THIRD_PARTY_APPS = (
     'corsheaders',
     'csrf.apps.CsrfAppConfig',  # Enables frontend apps to retrieve CSRF tokens
     'rest_framework',
-    'rest_framework_swagger',
+    'drf_spectacular',
     'social_django',
     'waffle',
 )
@@ -238,6 +238,14 @@ LOGIN_REDIRECT_URL = '/admin/'
 # OPENEDX-SPECIFIC CONFIGURATION
 PLATFORM_NAME = 'Your Platform Name Here'
 # END OPENEDX-SPECIFIC CONFIGURATION
+
+# DRF SPECTACULAR CONFIGURATION
+SPECTACULAR_SETTINGS = {
+    'TITLE': '{{cookiecutter.repo_name}} API',
+    'DESCRIPTION': '',
+    'VERSION': '1.0.0',
+}
+# END DRF SPECTACULAR CONFIGURATION
 
 # Override the default logging format string (default defined within utils.py).
 LOGGING_FORMAT_STRING = os.environ.get("LOGGING_FORMAT_STRING", None)
